@@ -2,4 +2,4 @@
 Note-CV-Frequency convert calculator for synth builders
 
 
-Run on (https://jsfiddle.net/kurogedelic/Lfd7a4yg/)[JSFiddle] page.
+Run on [JSFiddle](https://jsfiddle.net/kurogedelic/Lfd7a4yg/) page.
