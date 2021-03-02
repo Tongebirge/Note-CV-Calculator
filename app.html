@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Note-CV calculator</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font: 16px ui-sans-serif
+		}
+
+		p {
+			margin-bottom: 1em
+		}
+
+		header,article, footer {
+			margin: 1em
+		}
+	</style>
+</head>
+
+<body onLoad="calc()">
+	<script>
+		// 1V = 110Hz
+		// 2V = 220Hz
+		// 3V = 440Hz
+		// Voct = ln(2)(110)+1
+		// 		select = 72;
+		// 		number = note - 69;
+		// 		oct = number * (1 / 12);
+		// 		hz = 110 * Math.pow(2, (oct * 1 + 2));
+		// 		hzv = Math.pow(2, (oct * 1 + 2));
+		// 		octv = Math.log2(hzv) + 1;
+		// 
+		// 
+		// 		console.log("Number: " + select + "\n Oct: " + oct + " \n Hz: " + hz + " \n Hz/V: " + hzv + " \n Oct/V: " + octv);
+		note = 0;
+		number = 0;
+		oct = 0;
+		hz = 0;
+		hzv = 0;
+		octv = 0;
+
+		function calc() {
+			var note = document.form.note.value;
+			var freq = document.form.freq.value / 4;
+			number = note - 69;
+			oct = number * (1 / 12);
+			hz = freq * Math.pow(2, (number * 1 + 2));
+			hzv = Math.pow(2, (oct * 1 + 2));
+			octv = Math.log2(hzv) + 1;
+			document.form.oct.value = note;
+			document.form.hz.value = freq * Math.pow(2, (oct * 1 + 2));
+			document.form.hzv.value = Math.pow(2, (oct * 1 + 2));
+			document.form.octv.value = Math.log2(hzv) + 1;
+		}
+	</script>
+	<header><h1>Note-CV calculator <sup><small>v 0.1</small></sup></h1></header>
+	<article>
+		<form action="#" name="form">
+			<p><strong>Note Number</strong>: <input type="number" name="note" value="60" onChange="calc()"></p>
+			<p><strong>A<sub>4</sub> Frequency</strong>: <input type="number" name="freq" value="440" onChange="calc()"> [Hz]</p>
+			<p><input type="button" name="Calc" value="Calc" onClick="calc()"></p>
+			<p>Octave: <input type="text" name="oct"></p>
+			<p>Frequency: <input type="text" name="hz"> [Hz]</p>
+			<p>Hz/V: <input type="text" name="hzv"> [V]</p>
+			<p>Oct/V: <input type="text" name="octv"> [V]</p>
+		</form>
+	</article>
+	<footer><a href="https://github.com/Tongebirge/Note-CV-Calculator">GitHub</a></footer>
+</body>
+
+</html>
